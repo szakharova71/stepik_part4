@@ -20,7 +20,7 @@ class ProductPage(BasePage):
         product_price_in_basket=self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET).text
         assert product_price==product_price_in_basket, f"different products prices in product:{product_price} and basket:{product_price_in_basket}"
 
-    def is_message_disappeared(self):
+    def message_is_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.PRODUCT_NAME_IN_BASKET), \
             "Message is presented, but should disappear"
 

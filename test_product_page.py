@@ -8,11 +8,34 @@ def test_guest_can_add_product_to_basket(browser, offernumber):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{offernumber}"
     page = ProductPage(browser, link)
     page.open()
-    page.should_not_be_success_message()
     page.add_to_basket()
     page.solve_quiz_and_get_code()
-
     page.message_is_displayed()
     page.basket_sum_same_as_product()
 
+@pytest.mark.xfail
+@pytest.mark.parametrize ('offernumber',offernumberlist)
+def test_guest_cant_see_success_message_after_adding_product_to_basket  (browser,offernumber):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{offernumber}"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_not_be_success_message()
 
+@pytest.mark.parametrize ('offernumber',offernumberlist)
+def test_guest_cant_see_success_message(browser, offernumber):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{offernumber}"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.xfail
+@pytest.mark.parametrize ('offernumber',offernumberlist)
+def test_message_disappeared_after_adding_product_to_basket(browser, offernumber):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{offernumber}"
+    page = ProductPage(browser, link)
+    page.open()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.message_is_disappeared()
