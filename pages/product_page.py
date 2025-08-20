@@ -1,0 +1,20 @@
+from .base_page import BasePage
+from .locators import ProductPageLocators
+
+class ProductPage(BasePage):
+    def add_to_basket(self):
+        add_to_basket_btn=self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BTN)
+        add_to_basket_btn.click()
+
+    def message_is_displayed(self):
+        product_name=self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        product_name_in_basket=self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_BASKET).text
+        assert product_name==product_name_in_basket, f"different products names in product: {product_name} and basket:{product_name_in_basket}"
+
+    def basket_sum_same_as_product(self):
+        product_price=self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        product_price_in_basket=self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET).text
+        assert product_price==product_price_in_basket, f"different products prices in product:{product_price} and basket:{product_price_in_basket}"
+
+
+
