@@ -8,4 +8,4 @@ class BasketPage(BasePage):
         "Row with product is presented in basket, but should not be"
 
     def check_empty_basket_text(self):
-        assert self.is_element_present(*BasketPageLocators.BASKET_IS_EMPTY_TEXT),"Basket is empty text not found"
+        assert self.is_element_present(*BasketPageLocators.BASKET_IS_EMPTY_TEXT),"Basket is empty text is not presented"
